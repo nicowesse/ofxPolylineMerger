@@ -12,36 +12,36 @@
 #include "ofxTween.h"
 
 class ofxPolylineMerger{
-    
+
 public:
     ofxPolylineMerger();
     ~ofxPolylineMerger();
-    
-    void setup();
+
+    void setup(int resolution);
     void update();
     void draw();
-    
-    void setNbPoints(int nbP);
-    inline int getNbPoints() { return nbPoints;};
-    
-    inline ofPolyline getPolyline() {return polyOut;};
-    
-    void setPoly1(ofPolyline & p1);
-    void setPoly2(ofPolyline & p1);
-    
-    
-    void mergePolyline(float interpolationCoeff);
-    void mergePolyline(ofPolyline &p1, ofPolyline &p2, float interpolationCoeff);
-    
+
+    void setPointCount(int count);
+    inline int getPointCount() { return pointCount;};
+
+    inline ofPolyline getPolyline() {return output;};
+
+    void setFrom(ofPolyline & from);
+    void setTo(ofPolyline & to);
+
+
+    void mergePolyline(float interpolation);
+    void mergePolyline(ofPolyline &from, ofPolyline &to, float interpolation);
+
 private:
-    ofPolyline poly1;
-    ofPolyline poly2;
-    ofPolyline polyOut;
-    
-    int nbPoints;
-    
+    ofPolyline from;
+    ofPolyline to;
+    ofPolyline output;
+
+    int pointCount;
+
     ofxEasingCubic easing;
     float clamp;
     ofxTween::ofxEasingType easingType;
-    
+
 };
